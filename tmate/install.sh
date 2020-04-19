@@ -5,6 +5,8 @@ if [[ $# -ne 2 ]]; then
     exit 1
 fi
 
+sudo adduser --ingroup dialout villager
+
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 apt-get install -y python3-pip
 pip3 install -r $SCRIPTPATH/requirements.txt
