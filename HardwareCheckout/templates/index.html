@@ -4,16 +4,26 @@
 
 <script src="https://player.twitch.tv/js/embed/v1.js"></script>
 <script src="{{ static_url('js/term.js') }}"></script>
+<script src="{{ static_url('js/loader.js') }}"></script>
 {% end %}
 
 {% block content %}
     <div class="container">
         <div class="content">
-            <div class="section-header">About</div>
+            <div class="section-header">
+              <div>About</div>
+              <div class="preloader">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+                <span class="line line-4"></span>
+                <span class="line line-5"></span>
+              </div>
+            </div>
             <div class="about-text">
-                <p>With many conferences going virtual this year, CHV has gone virtual as well.  But that doesn't mean you can't hack cars.  We have a number of cars across the globe connected to Raspberry Pis, allowing hackers to SSH in and <a href="https://www.carhackingvillage.com/getting-started">send CAN messages</a>.  </p>
-                <p>How does it work?  First, <a href="/signup">sign up</a> for an account, and <a href="/login">log in</a>.  Next, click "Join Queue" on the car you want to hack.  </p>
-                <p>Once you're to the front of the line, you'll see a console appear with SSH instructions.  You'll have 30 minutes with the vehicle to solve CTF challenges or whatever else you'd like.</p>
+              <p>With many conferences going virtual this year, CHV has gone virtual as well. But that doesn't mean you can't hack cars. We have a number of cars across the globe connected to Raspberry Pis, allowing hackers to SSH in and <a href="https://www.carhackingvillage.com/getting-started">send CAN messages</a>. </p>
+              <p>How does it work? First, <a href="https://virtual.carhackingvillage.com/signup">sign up</a> for an account, and <a href="https://virtual.carhackingvillage.com/login">log in</a>. Next, click "Join Queue" on the car you want to hack. </p>
+              <p>Once you're to the front of the line, you'll see a console appear with SSH instructions. You'll have 30 minutes with the vehicle to solve CTF challenges or whatever else you'd like.</p>
             </div>
             {% if pictures %}
             <div class="car-icon-row">
@@ -35,11 +45,18 @@
             {% end %}
         </div>
 
-        <div class="breaker-line"></div>
-
         <div id="devices" class="content">
         {% if devices %}
-            <div class="section-header">Devices available</div>
+            <div class="section-header">
+              <div>Devices available</div>
+              <div class="preloader">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+                <span class="line line-4"></span>
+                <span class="line line-5"></span>
+              </div>
+            </div>
             <div class="available-devices--row">
                 {% for device in devices %}
                 <div class="available-device" id="device_{{ device['name'] }}">
@@ -53,14 +70,26 @@
                           <div class="tab-space">${{ device['sshAddr'] }}</div>
                           <br>
                           <div>Or visit it at <a href="{{ device['webUrl'] }}">{{ device['webUrl'] }}</a></div>
+                          <div class="device-loading">
+                            <canvas id="division-loader" width="46" height="46"></canvas>
+                          </div>
                         </div>
-                        <div>Check out the tutorial <a href="https://www.carhackingvillage.com/getting-started">here</a>.</div>
+                        <div>You have 30 minutes with this device. <br/>Check out the tutorial <a href="https://www.carhackingvillage.com/getting-started">here</a>.</div>
                     </div>
                 </div>
                 {% end %}
             </div>
         {% else %}
-            <div class="section-header">Devices available</div>
+            <div class="section-header">
+              <div>Devices available</div>
+              <div class="preloader">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+                <span class="line line-4"></span>
+                <span class="line line-5"></span>
+              </div>
+            </div>
             <div class="available-devices--row">
               {% if not current_user %}
                   <div class="not-found">Please login to view available devices.  </div>
@@ -73,10 +102,18 @@
         {% end %}
         </div>
 
-        <div class="breaker-line"></div>
         <div class="content">
         {% if queues %}
-            <div class="section-header">Join device queue</div>
+            <div class="section-header">
+              <div>Join device queue</div>
+              <div class="preloader">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+                <span class="line line-4"></span>
+                <span class="line line-5"></span>
+              </div>
+            </div>
             <div class="device-queue--row">
                 {% for queue in queues %}
                 <div class="device-queue">
@@ -97,7 +134,16 @@
                 {% end %}
             </div>
         {% else %}
-        <div class="section-header">Join device queue</div>
+        <div class="section-header">
+          <div>Join device queue</div>
+          <div class="preloader">
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
+            <span class="line line-4"></span>
+            <span class="line line-5"></span>
+          </div>
+        </div>
         <div class="available-devices--row">
           {% if not current_user %}
               <div class="not-found">Please login to view available queues. </div>
@@ -115,7 +161,16 @@
 
         {% if show_streams %}
         <div class="content">
-        <div class="section-header">Live Action</div>
+        <div class="section-header">
+          <div>Live Action</div>
+          <div class="preloader">
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
+            <span class="line line-4"></span>
+            <span class="line line-5"></span>
+          </div>
+        </div>
             {% if tstreams %}
                 <div class="columns twitch-streams">
                     {% for count in range(len(tstreams)) %}
